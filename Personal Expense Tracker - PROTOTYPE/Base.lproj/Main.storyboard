@@ -91,7 +91,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1" y="77"/>
+            <point key="canvasLocation" x="-494" y="-65"/>
         </scene>
         <!--Register-->
         <scene sceneID="uDD-Ba-QlP">
@@ -171,12 +171,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iLp-04-RjX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1080" y="826"/>
+            <point key="canvasLocation" x="-1411" y="657"/>
         </scene>
-        <!--View Controller-->
+        <!--Add Income View Controller-->
         <scene sceneID="ns7-3I-QLe">
             <objects>
-                <viewController id="EEh-5p-bWP" sceneMemberID="viewController">
+                <viewController id="EEh-5p-bWP" customClass="AddIncomeViewController" customModule="Personal_Expense_Tracker___PROTOTYPE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MHr-ty-JTn">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -198,10 +198,10 @@
             </objects>
             <point key="canvasLocation" x="3755" y="825"/>
         </scene>
-        <!--View Controller-->
+        <!--Notifications View Controller-->
         <scene sceneID="0Nh-dJ-se5">
             <objects>
-                <viewController id="sms-YK-1Gs" sceneMemberID="viewController">
+                <viewController id="sms-YK-1Gs" customClass="NotificationsViewController" customModule="Personal_Expense_Tracker___PROTOTYPE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="T6V-60-Wmd">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -281,10 +281,10 @@
             </objects>
             <point key="canvasLocation" x="2707.6335877862593" y="479.57746478873241"/>
         </scene>
-        <!--View Controller-->
+        <!--Add Expense View Controller-->
         <scene sceneID="1Ch-jS-pN4">
             <objects>
-                <viewController id="OQn-Ay-ud7" sceneMemberID="viewController">
+                <viewController id="OQn-Ay-ud7" customClass="AddExpenseViewController" customModule="Personal_Expense_Tracker___PROTOTYPE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="unW-h5-dlD">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -309,7 +309,7 @@
         <!--Budget-->
         <scene sceneID="gAz-Ow-xAT">
             <objects>
-                <viewController id="gDi-ZS-Vac" sceneMemberID="viewController">
+                <viewController id="gDi-ZS-Vac" customClass="BudgetViewController" customModule="Personal_Expense_Tracker___PROTOTYPE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="isr-t9-Q0J">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -388,7 +388,7 @@
         <!--Analytics-->
         <scene sceneID="JTb-Q4-bwx">
             <objects>
-                <viewController id="zcv-OM-aaR" sceneMemberID="viewController">
+                <viewController id="zcv-OM-aaR" customClass="AnalyticsViewController" customModule="Personal_Expense_Tracker___PROTOTYPE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dhZ-DV-e0v">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -426,7 +426,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3VV-uR-PqU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1079" y="77"/>
+            <point key="canvasLocation" x="-1410" y="-65"/>
         </scene>
         <!--Dashboard-->
         <scene sceneID="RvA-aw-Q3I">
