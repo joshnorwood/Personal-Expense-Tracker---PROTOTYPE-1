@@ -15,15 +15,18 @@ class AddIncomeViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBOutlet weak var occupationTextField: UITextField!
+    @IBOutlet weak var salaryTextField: UITextField!
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func saveIncome(_ sender: UIButton) {
+        let occupation = occupationTextField.text ?? ""
+        let salary = Double(salaryTextField.text ?? "") ?? 0.0
+        
+        // Save income data using UserDefaults or another storage method
     }
-    */
+
+    
+
+    
 
 }
