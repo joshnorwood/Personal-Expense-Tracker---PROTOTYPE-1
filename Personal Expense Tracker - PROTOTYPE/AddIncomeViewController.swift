@@ -11,8 +11,6 @@ class AddIncomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
     @IBOutlet weak var occupationTextField: UITextField!
@@ -21,12 +19,18 @@ class AddIncomeViewController: UIViewController {
     @IBAction func saveIncome(_ sender: UIButton) {
         let occupation = occupationTextField.text ?? ""
         let salary = Double(salaryTextField.text ?? "") ?? 0.0
+        saveIncome(occupation: occupation, salary: salary)
         
-        // Save income data using UserDefaults or another storage method
+        let alertController = UIAlertController(title: "Income Saved", message: "The Income Has Been Saved.", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+            self?.navigationController?.popViewController(animated: true)
+        }
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
     }
-
     
-
-    
-
+    func saveIncome(occupation: String, salary: Double) {
+        UserDefaults.standard.set(occupation, forKey: "occupation")
+        UserDefaults.standard.set(salary, forKey: "salary")
+    }
 }

@@ -20,23 +20,30 @@ class AddExpenseViewController: UIViewController {
     @IBOutlet weak var expenseTextField: UITextField!
     @IBOutlet weak var amountTextField: UITextField!
 
-    @IBAction func saveExpense(_ sender: UIButton) {
-        let expense = expenseTextField.text ?? ""
-        let amount = Double(amountTextField.text ?? "") ?? 0.0
-        
-        // Save expense data using UserDefaults or another storage method
-    }
+    @IBAction func saveExpenseButtonTapped(_ sender: UIButton) {
+            let expense = expenseTextField.text ?? ""
+            let amount = Double(amountTextField.text ?? "") ?? 0.0
+            saveExpense(expense: expense, amount: amount)
+            
+            let alertController = UIAlertController(title: "Expense Saved", message: "The Expense Has Been Saved.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+                self?.navigationController?.popViewController(animated: true)
+            }
+            alertController.addAction(okAction)
+            present(alertController, animated: true, completion: nil)
+        }
     
     @IBOutlet weak var previousExpensesPicker: UIPickerView!
 
-    func saveExpense(_ expense: String) {
-        var expenses = UserDefaults.standard.stringArray(forKey: "expenses") ?? []
-        expenses.append(expense)
+    func saveExpense(expense: String, amount: Double) {
+        var expenses = UserDefaults.standard.dictionary(forKey: "expenses") as? [String: Double] ?? [:]
+        expenses[expense] = amount
         UserDefaults.standard.set(expenses, forKey: "expenses")
     }
 
     func loadExpenses() -> [String] {
-        return UserDefaults.standard.stringArray(forKey: "expenses") ?? []
+        let expenses = UserDefaults.standard.dictionary(forKey: "expenses") as? [String: Double] ?? [:]
+        return Array(expenses.keys)
     }
 }
 
@@ -56,7 +63,10 @@ extension AddExpenseViewController: UIPickerViewDataSource, UIPickerViewDelegate
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let selectedExpense = loadExpenses()[row]
-        expenseTextField.text = selectedExpense
+        let expenses = loadExpenses()
+        if !expenses.isEmpty {
+            let selectedExpense = expenses[row]
+            expenseTextField.text = selectedExpense
+        }
     }
 }

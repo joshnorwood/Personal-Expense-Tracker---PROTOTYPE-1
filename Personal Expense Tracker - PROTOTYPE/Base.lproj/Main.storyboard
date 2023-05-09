@@ -215,7 +215,7 @@
                                     <fontDescription key="titleFontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="27"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="saveIncome:" destination="EEh-5p-bWP" eventType="touchUpInside" id="f4p-4l-TJK"/>
+                                    <action selector="saveIncome:" destination="EEh-5p-bWP" eventType="touchUpInside" id="WLL-Gu-BaL"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -224,8 +224,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="RvD-rv-usu"/>
                     <connections>
-                        <outlet property="occupationTextField" destination="Px0-Q5-4Db" id="VaG-Pm-mKC"/>
-                        <outlet property="salaryTextField" destination="MXh-gI-KK0" id="HTJ-r4-CTW"/>
+                        <outlet property="occupationTextField" destination="Px0-Q5-4Db" id="gjK-cV-PYz"/>
+                        <outlet property="salaryTextField" destination="MXh-gI-KK0" id="nLl-S5-Y5g"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HLJ-br-MIc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -368,7 +368,7 @@
                                     <fontDescription key="titleFontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="27"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="saveExpense:" destination="OQn-Ay-ud7" eventType="touchUpInside" id="8Ao-Zk-Chb"/>
+                                    <action selector="saveExpenseButtonTapped:" destination="OQn-Ay-ud7" eventType="touchUpInside" id="7wd-ze-kD6"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -414,7 +414,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="fR1-CD-Xfm">
             <objects>
-                <tabBarController storyboardIdentifier="MainTabBarController" id="ikF-3z-HGz" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" id="ikF-3z-HGz" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="A7O-Wb-RuL"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="VG8-UR-QRc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
