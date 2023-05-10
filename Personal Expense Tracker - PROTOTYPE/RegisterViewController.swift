@@ -38,23 +38,31 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func registerButtonPressed(_ sender: UIButton) {
-            guard let email = emailTextField.text, let password = passwordTextField.text, let confirmPassword = confirmPasswordTextField.text else { return }
+        guard let email = emailTextField.text, let password = passwordTextField.text, let confirmPassword = confirmPasswordTextField.text else { return }
 
-            if password != confirmPassword {
-                showAlert(title: "Error", message: "Passwords do not match.")
-                return
-            }
-
-            newUser = User(userID: DataStore.shared.users.count + 1, email: email, password: password, totalIncome: 0, totalExpenses: 0)
-            if let newUser = newUser {
-                DataStore.shared.users.append(newUser)
-
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let tabBarController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as! UITabBarController
-                tabBarController.modalPresentationStyle = .fullScreen
-                present(tabBarController, animated: true, completion: nil)
-            }
+        if password != confirmPassword {
+            showAlert(title: "Error", message: "Passwords do not match.")
+            return
         }
+
+        newUser = User(userID: DataStore.shared.users.count + 1, email: email, password: password, occupation: "", salary: 0.0, expenses: [])
+        if let newUser = newUser {
+            DataStore.shared.users.append(newUser)
+            UserDefaults.standard.set(newUser.userID, forKey: "loggedInUserID")
+
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let tabBarController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as! UITabBarController
+            
+            if let dashboardNavigationVC = tabBarController.viewControllers?.first as? UINavigationController,
+               let dashboardVC = dashboardNavigationVC.topViewController as? DashboardViewController {
+                dashboardVC.currentUser = newUser
+            }
+            
+            tabBarController.modalPresentationStyle = .fullScreen
+            present(tabBarController, animated: true, completion: nil)
+        }
+    }
+
 
     
     func showAlert(title: String, message: String) {

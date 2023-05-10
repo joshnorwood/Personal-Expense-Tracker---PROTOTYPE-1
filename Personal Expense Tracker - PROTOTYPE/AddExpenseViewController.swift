@@ -36,19 +36,14 @@ class AddExpenseViewController: UIViewController {
     @IBOutlet weak var previousExpensesPicker: UIPickerView!
     
     func saveExpense(_ expense: String, amount: Double) {
-        guard let userId = currentUser?.userID else { return }
-        let key = "expenses_\(userId)"
-        var expenses = UserDefaults.standard.stringArray(forKey: key) ?? []
         let expenseWithAmount = "\(expense):\(amount)"
-        expenses.append(expenseWithAmount)
-        UserDefaults.standard.set(expenses, forKey: key)
+        currentUser?.expenses.append(expenseWithAmount)
     }
-    
+
     func loadExpenses() -> [String] {
-        guard let userId = currentUser?.userID else { return [] }
-        let key = "expenses_\(userId)"
-        return UserDefaults.standard.stringArray(forKey: key) ?? []
+        return currentUser?.expenses ?? []
     }
+
 }
 
 extension AddExpenseViewController: UIPickerViewDataSource, UIPickerViewDelegate {

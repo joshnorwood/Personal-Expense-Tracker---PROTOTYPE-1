@@ -32,8 +32,8 @@ class AddIncomeViewController: UIViewController {
     }
     
     func saveIncome(occupation: String, salary: Double) {
-        guard let userId = currentUser?.userID else { return }
-        UserDefaults.standard.set(occupation, forKey: "occupation_\(userId)")
-        UserDefaults.standard.set(salary, forKey: "salary_\(userId)")
+        currentUser?.occupation = occupation
+        currentUser?.salary = salary
     }
+
 }

@@ -33,6 +33,11 @@ class DataStore {
         }
     }
     
+    func getUser(userID: Int) -> User? {
+        return users.first(where: { $0.userID == userID })
+    }
+
+    
     func getUser(email: String, password: String) -> User? {
         return users.first(where: { $0.email == email && $0.password == password })
     }

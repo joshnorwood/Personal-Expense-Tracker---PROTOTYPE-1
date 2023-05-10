@@ -17,7 +17,13 @@ class DashboardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let loggedInUserID = UserDefaults.standard.value(forKey: "loggedInUserID") as? Int {
+            currentUser = DataStore.shared.getUser(userID: loggedInUserID)
+        }
     }
+
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -25,11 +31,12 @@ class DashboardViewController: UIViewController {
     }
 
     func updateLabels() {
-        guard let userId = currentUser?.userID else { return }
-        let occupation = UserDefaults.standard.string(forKey: "occupation_\(userId)") ?? ""
-        let salary = UserDefaults.standard.double(forKey: "salary_\(userId)")
-        let expenses = UserDefaults.standard.array(forKey: "expenses_\(userId)") as? [String] ?? []
-        
+        guard let currentUser = currentUser else { return }
+
+        let occupation = currentUser.occupation
+        let salary = currentUser.salary
+        let expenses = currentUser.expenses
+
         // Calculate total expenses
         var totalExpenses = 0.0
         for expense in expenses {
@@ -45,6 +52,7 @@ class DashboardViewController: UIViewController {
         totalExpensesLabel.text = "Total Expenses: $\(totalExpenses)"
         balanceLabel.text = "Net Income: $\(netIncome)"
     }
+
     
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
         let addMenu = UIAlertController(title: nil, message: "Choose an option", preferredStyle: .actionSheet)
