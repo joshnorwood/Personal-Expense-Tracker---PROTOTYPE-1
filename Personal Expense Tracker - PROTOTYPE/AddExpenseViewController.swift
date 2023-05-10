@@ -8,7 +8,9 @@
 import UIKit
 
 class AddExpenseViewController: UIViewController {
-
+    
+    var currentUser: User?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -19,31 +21,34 @@ class AddExpenseViewController: UIViewController {
     
     @IBOutlet weak var expenseTextField: UITextField!
     @IBOutlet weak var amountTextField: UITextField!
-
+    
     @IBAction func saveExpenseButtonTapped(_ sender: UIButton) {
-            let expense = expenseTextField.text ?? ""
-            let amount = Double(amountTextField.text ?? "") ?? 0.0
-            saveExpense(expense: expense, amount: amount)
-            
-            let alertController = UIAlertController(title: "Expense Saved", message: "The Expense Has Been Saved.", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
-                self?.navigationController?.popViewController(animated: true)
-            }
-            alertController.addAction(okAction)
-            present(alertController, animated: true, completion: nil)
+        let expense = expenseTextField.text ?? ""
+        let amount = Double(amountTextField.text ?? "") ?? 0.0
+        saveExpense(expense: expense, amount: amount)
+        
+        let alertController = UIAlertController(title: "Expense Saved", message: "The Expense Has Been Saved.", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+            self?.navigationController?.popViewController(animated: true)
         }
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+    }
     
     @IBOutlet weak var previousExpensesPicker: UIPickerView!
-
-    func saveExpense(expense: String, amount: Double) {
-        var expenses = UserDefaults.standard.dictionary(forKey: "expenses") as? [String: Double] ?? [:]
-        expenses[expense] = amount
-        UserDefaults.standard.set(expenses, forKey: "expenses")
+    
+    func saveExpense(_ expense: String) {
+        guard let userId = currentUser?.userID else { return }
+        let key = "expenses_\(userId)"
+        var expenses = UserDefaults.standard.stringArray(forKey: key) ?? []
+        expenses.append(expense)
+        UserDefaults.standard.set(expenses, forKey: key)
     }
-
+    
     func loadExpenses() -> [String] {
-        let expenses = UserDefaults.standard.dictionary(forKey: "expenses") as? [String: Double] ?? [:]
-        return Array(expenses.keys)
+        guard let userId = currentUser?.userID else { return [] }
+        let key = "expenses_\(userId)"
+        return UserDefaults.standard.stringArray(forKey: key) ?? []
     }
 }
 

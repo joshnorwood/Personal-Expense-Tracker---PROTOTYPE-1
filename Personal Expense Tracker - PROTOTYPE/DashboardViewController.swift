@@ -8,6 +8,8 @@
 import UIKit
 
 class DashboardViewController: UIViewController {
+    
+    var currentUser: User?
 
     @IBOutlet weak var totalIncomeLabel: UILabel!
     @IBOutlet weak var totalExpensesLabel: UILabel!
