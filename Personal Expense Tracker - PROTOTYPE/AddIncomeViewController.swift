@@ -8,6 +8,8 @@
 import UIKit
 
 class AddIncomeViewController: UIViewController {
+    
+    var currentUser: User?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +32,8 @@ class AddIncomeViewController: UIViewController {
     }
     
     func saveIncome(occupation: String, salary: Double) {
-        UserDefaults.standard.set(occupation, forKey: "occupation")
-        UserDefaults.standard.set(salary, forKey: "salary")
+        guard let userId = currentUser?.userID else { return }
+        UserDefaults.standard.set(occupation, forKey: "occupation_\(userId)")
+        UserDefaults.standard.set(salary, forKey: "salary_\(userId)")
     }
 }

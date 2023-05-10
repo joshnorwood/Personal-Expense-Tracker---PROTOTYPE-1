@@ -39,7 +39,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             UserDefaults.standard.set(currentUser.userID, forKey: "loggedInUserID")
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let tabBarVC = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
+            let tabBarVC = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as! UITabBarController
             
             if let dashboardNavigationVC = tabBarVC.viewControllers?.first as? UINavigationController,
                let dashboardVC = dashboardNavigationVC.topViewController as? DashboardViewController {

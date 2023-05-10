@@ -257,7 +257,7 @@
             </objects>
             <point key="canvasLocation" x="3754.9618320610684" y="-577.46478873239437"/>
         </scene>
-        <!--Welcome-->
+        <!--Dashboard-->
         <scene sceneID="QpK-0c-gwD">
             <objects>
                 <viewController storyboardIdentifier="DashboardViewController" id="FDm-TS-dJC" customClass="DashboardViewController" customModule="Personal_Expense_Tracker___PROTOTYPE" customModuleProvider="target" sceneMemberID="viewController">
@@ -286,11 +286,18 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HpO-05-vYk">
+                                <rect key="frame" x="131" y="142" width="130" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="bXg-RK-ylD"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Welcome" id="SgN-6r-1Jb">
+                    <navigationItem key="navigationItem" title="Dashboard" id="SgN-6r-1Jb">
                         <barButtonItem key="leftBarButtonItem" title="Notifications" id="ut3-Dv-I0i">
                             <connections>
                                 <segue destination="sms-YK-1Gs" kind="show" id="szv-LP-P8X"/>
@@ -414,7 +421,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="fR1-CD-Xfm">
             <objects>
-                <tabBarController storyboardIdentifier="TabBarController" id="ikF-3z-HGz" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainTabBarController" id="ikF-3z-HGz" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="A7O-Wb-RuL"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="VG8-UR-QRc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>

@@ -25,9 +25,10 @@ class DashboardViewController: UIViewController {
     }
 
     func updateLabels() {
-        let occupation = UserDefaults.standard.string(forKey: "occupation") ?? ""
-        let salary = UserDefaults.standard.double(forKey: "salary")
-        let expenses = UserDefaults.standard.array(forKey: "expenses") as? [String] ?? []
+        guard let userId = currentUser?.userID else { return }
+        let occupation = UserDefaults.standard.string(forKey: "occupation_\(userId)") ?? ""
+        let salary = UserDefaults.standard.double(forKey: "salary_\(userId)")
+        let expenses = UserDefaults.standard.array(forKey: "expenses_\(userId)") as? [String] ?? []
         
         // Calculate total expenses
         var totalExpenses = 0.0
@@ -66,4 +67,15 @@ class DashboardViewController: UIViewController {
         
         present(addMenu, animated: true, completion: nil)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showAddIncome" {
+            let addIncomeVC = segue.destination as? AddIncomeViewController
+            addIncomeVC?.currentUser = currentUser
+        } else if segue.identifier == "showAddExpense" {
+            let addExpenseVC = segue.destination as? AddExpenseViewController
+            addExpenseVC?.currentUser = currentUser
+        }
+    }
+
 }

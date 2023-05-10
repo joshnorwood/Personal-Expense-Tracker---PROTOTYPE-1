@@ -13,10 +13,8 @@ class AddExpenseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         previousExpensesPicker.dataSource = self
         previousExpensesPicker.delegate = self
-        
     }
     
     @IBOutlet weak var expenseTextField: UITextField!
@@ -25,7 +23,7 @@ class AddExpenseViewController: UIViewController {
     @IBAction func saveExpenseButtonTapped(_ sender: UIButton) {
         let expense = expenseTextField.text ?? ""
         let amount = Double(amountTextField.text ?? "") ?? 0.0
-        saveExpense(expense: expense, amount: amount)
+        saveExpense(expense, amount: amount)
         
         let alertController = UIAlertController(title: "Expense Saved", message: "The Expense Has Been Saved.", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
@@ -37,11 +35,12 @@ class AddExpenseViewController: UIViewController {
     
     @IBOutlet weak var previousExpensesPicker: UIPickerView!
     
-    func saveExpense(_ expense: String) {
+    func saveExpense(_ expense: String, amount: Double) {
         guard let userId = currentUser?.userID else { return }
         let key = "expenses_\(userId)"
         var expenses = UserDefaults.standard.stringArray(forKey: key) ?? []
-        expenses.append(expense)
+        let expenseWithAmount = "\(expense):\(amount)"
+        expenses.append(expenseWithAmount)
         UserDefaults.standard.set(expenses, forKey: key)
     }
     
