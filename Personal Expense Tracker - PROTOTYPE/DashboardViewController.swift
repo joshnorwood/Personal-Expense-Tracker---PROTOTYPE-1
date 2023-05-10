@@ -8,30 +8,40 @@
 import UIKit
 
 class DashboardViewController: UIViewController {
-    
+
     @IBOutlet weak var totalIncomeLabel: UILabel!
     @IBOutlet weak var totalExpensesLabel: UILabel!
     @IBOutlet weak var balanceLabel: UILabel!
     
-    var currentUser: User?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateLabels()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateLabels()
     }
-    
+
     func updateLabels() {
-        guard let currentUser = currentUser else { return }
-        totalIncomeLabel.text = "Total Income: \(currentUser.totalIncome)"
-        totalExpensesLabel.text = "Total Expenses: \(currentUser.totalExpenses)"
-            balanceLabel.text = "Net Income: \(currentUser.totalIncome - currentUser.totalExpenses)"
+        let occupation = UserDefaults.standard.string(forKey: "occupation") ?? ""
+        let salary = UserDefaults.standard.double(forKey: "salary")
+        let expenses = UserDefaults.standard.array(forKey: "expenses") as? [String] ?? []
+        
+        // Calculate total expenses
+        var totalExpenses = 0.0
+        for expense in expenses {
+            let amount = Double(expense.components(separatedBy: ":")[1]) ?? 0.0
+            totalExpenses += amount
+        }
+
+        // Calculate net income
+        let netIncome = salary - totalExpenses
+
+        // Update UI
+        totalIncomeLabel.text = "Total Income: \(occupation) - $\(salary)"
+        totalExpensesLabel.text = "Total Expenses: $\(totalExpenses)"
+        balanceLabel.text = "Net Income: $\(netIncome)"
     }
-    
     
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
         let addMenu = UIAlertController(title: nil, message: "Choose an option", preferredStyle: .actionSheet)
@@ -54,12 +64,4 @@ class DashboardViewController: UIViewController {
         
         present(addMenu, animated: true, completion: nil)
     }
-    
-    
-    
-    
-    
-    
-    
-    
 }
